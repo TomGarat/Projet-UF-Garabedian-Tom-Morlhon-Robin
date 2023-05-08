@@ -1,0 +1,126 @@
+/* Couleurs */
+:root {
+    --couleur-principale: #2c3e50;
+    --couleur-secondaire: #34495e;
+    --couleur-texte: #ecf0f1;
+  }
+  
+  /* Reset CSS */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Styles généraux */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-principale);
+  }
+  
+  /* En-tête */
+  header {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--couleur-secondaire);
+  }
+  
+  /* Contenu principal */
+  main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  section {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(236, 240, 241, 0.2);
+    padding-bottom: 20px;
+  }
+  
+  h1, h2 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 20px;
+    text-indent: 20px;
+  }
+  
+  /* Pied de page */
+  footer {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--couleur-secondaire);
+  }
+  
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    main {
+      padding: 10px;
+    }
+  
+    header, footer {
+      padding: 10px;
+    }
+  }
+  /* Menu de navigation */
+nav {
+    margin-top: 20px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    margin-right: 10px;
+  }
+  
+  nav ul li:last-child {
+    margin-right: 0;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: var(--couleur-texte);
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    color: rgba(236, 240, 241, 0.7);
+  }
+/* Flèche pour revenir en haut de la page */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 24px;
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-texte);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .back-to-top:hover {
+    background-color: rgba(52, 73, 94, 0.8);
+    color: rgba(236, 240, 241, 0.7);
+  }
+/* Styles pour les commandes */
+code {
+    display: inline-block;
+    padding: 2px 4px;
+    font-family: "Courier New", monospace;
+    font-size: 0.9em;
+    color: var(--couleur-principale);
+    background-color: var(--couleur-texte);
+    border-radius: 2px;
+  }
+    

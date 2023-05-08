@@ -1,0 +1,27 @@
+Projet UF: Infrastructure réseau, serveur web et serveur de sauvegarde
+Ce README décrit la répartition des tâches entre Tom et Robin pour la réalisation du projet UF, consistant en la mise en place d'une infrastructure réseau, d'un serveur web et d'un serveur de sauvegarde.
+
+Répartition des tâches
+Tom
+Tom s'est principalement concentré sur le développement du site web et la rédaction de la documentation associée. Ses tâches comprenaient :
+
+Création et design du site web pour le projet UF
+Rédaction de la documentation technique, décrivant en détail les choix technologiques, les étapes d'installation et de configuration, et la gestion des accès
+Participation aux discussions et décisions concernant les choix technologiques avec Robin
+Le travail de Tom sur le site web et la documentation lui a permis d'acquérir une compréhension approfondie du projet UF, ainsi que des compétences en matière de développement web et de rédaction technique.
+
+Robin
+Robin s'est occupé de tous les aspects du projet qui ne concernaient pas directement le développement web. Ses responsabilités comprenaient :
+
+Analyse des solutions techniques pour la mise en place des serveurs, du réseau et des sauvegardes (Borg vs rsync, Ubuntu Server vs Debian)
+Installation et configuration des machines virtuelles (routeur, serveur web, serveur de sauvegarde, clients)
+Configuration du réseau pour les VMs, y compris la connexion entre elles et l'accès à Internet
+Mise en place et configuration du serveur web avec Apache2
+Configuration et automatisation du système de sauvegarde avec Borg
+Gestion des accès et des identifiants avec le gestionnaire de mots de passe Bitwarden
+Conclusion
+La répartition des tâches entre Tom et Robin a permis de couvrir efficacement les différents aspects du projet UF. Tom a pu se concentrer sur le développement du site web et la rédaction de la documentation, tandis que Robin s'est chargé de la mise en place de l'infrastructure réseau, des serveurs et des sauvegardes.
+
+Cette collaboration a non seulement permis de mener à bien le projet, mais également d'approfondir les compétences de chacun dans leur domaine respectif, tout en travaillant en équipe pour prendre des décisions éclairées sur les choix technologiques.
+
+Le projet UF est un exemple réussi de collaboration et de partage des compétences pour la réalisation d'un projet complexe et complet.

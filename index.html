@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet_UF</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<a href="#" class="back-to-top">&#x2191;</a>
+<body>
+    <header>
+        <h1>Projet_UF</h1>
+        <nav>
+          <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#P1">Choix des solutions et gestion des accès</a></li>
+            <li><a href="#P2">Installation des machines virtuelles</a></li>
+            <li><a href="#P3">Configuration du réseau</a></li>
+            <li><a href="#P4">Mise en place du serveur web avec Apache2</a></li>
+            <li><a href="#conclu">Conclusion</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+  <main>
+    <section id="intro">
+      <h2>Introduction</h2>
+      <p>Le projet présenté ici vise à mettre en place une infrastructure informatique composée d'un serveur web et d'un serveur de sauvegarde pour une organisation. Ce projet permettra à l'organisation d'héberger et de gérer efficacement son site web tout en s'assurant de la sécurité et de l'intégrité des données grâce à un système de sauvegarde performant.
+        <br><br>
+        Ce projet repose sur l'utilisation de plusieurs outils et technologies, tels que Borg pour la sauvegarde des données, Apache2 pour le serveur web, Ubuntu Server pour les systèmes d'exploitation et VirtualBox pour la virtualisation des environnements. Nous avons également pris en compte les aspects de sécurité, comme la gestion des mots de passe avec Bitwarden et la configuration des pare-feu.
+        <br><br>
+        Dans le cadre de ce projet, nous avons procédé à l'installation et la configuration de plusieurs machines virtuelles (VM) pour mettre en place l'infrastructure nécessaire. Nous avons également établi des connexions réseau entre les VMs, configuré le serveur web pour accueillir le site et mis en place un système de sauvegarde automatisé avec Borg.
+        <br><br>
+        L'objectif principal de ce projet est de fournir à l'organisation une infrastructure solide et sécurisée, capable de répondre à ses besoins en matière d'hébergement web et de sauvegarde de données. Cette infrastructure facilitera la gestion et la maintenance des services web, tout en assurant la protection des données critiques grâce à des sauvegardes régulières et automatisées.
+        <br><br>
+        Les étapes détaillées de ce projet sont présentées dans les parties suivantes, où nous aborderons l'installation des VMs, la configuration des réseaux, la mise en place du serveur web avec Apache2, et la configuration du système de sauvegarde avec Borg.</p>
+    </section>
+    <section id="P1">
+      <h2>Partie 1: Choix des solutions et gestion des accès</h2>
+      <p>
+        1.1 Comparaison de Borg et Rsync
+        <br><br>
+      Le projet implique la mise en place d'un système de sauvegarde efficace. Pour cela, nous avons étudié deux solutions populaires : Borg et Rsync. Borg est un outil de déduplication et de sauvegarde avec compression et chiffrement, tandis que Rsync est un outil de synchronisation de fichiers qui permet de transférer et de mettre à jour les fichiers de manière incrémentielle.
+      <br><br>
+      Borg a été choisi pour ce projet en raison de ses avantages par rapport à Rsync. Tout d'abord, Borg offre une compression des données, ce qui permet de réduire l'espace de stockage nécessaire pour les sauvegardes. De plus, il chiffre les données sauvegardées, garantissant ainsi leur confidentialité et leur sécurité. Enfin, Borg permet une déduplication des données, ce qui signifie que seules les modifications apportées aux fichiers sont sauvegardées, permettant ainsi d'économiser du temps et de l'espace de stockage.
+      <br><br>
+      1.2 Choix entre Ubuntu Server et Debian
+      <br><br>
+      Pour les serveurs du projet, nous avons comparé deux distributions Linux : Ubuntu Server et Debian. Les deux distributions sont populaires et offrent des avantages et des inconvénients. Toutefois, nous avons choisi Ubuntu Server pour plusieurs raisons.
+<br><br>
+      Premièrement, lors de nos tests, nous avons rencontré des problèmes avec Debian, notamment des problèmes de réponse de la fenêtre lors de l'installation de la VM et des difficultés pour configurer le serveur. Ubuntu Server, en revanche, s'est révélé plus confortable et moderne. De plus, certains membres de l'équipe avaient déjà de l'expérience avec Ubuntu Server, ce qui facilite la prise en main et la maintenance du système.
+      <br><br>
+      1.3 Gestion des accès et des identifiants
+      <br><br>
+      Pour gérer les accès et les identifiants des différentes machines virtuelles et services, nous utilisons le gestionnaire de mots de passe Bitwarden. Ce choix permet de centraliser et de sécuriser les identifiants utilisés dans le projet. Les mots de passe sont générés et stockés dans Bitwarden, et l'accès aux informations est facile pour toute l'équipe, tout en étant protégé par des mécanismes de sécurité robustes.
+      <br><br>
+      Bitwarden permet également de partager facilement les identifiants entre les membres de l'équipe sans compromettre la sécurité des mots de passe, garantissant ainsi un accès fluide et sécurisé à toutes les ressources nécessaires au bon déroulement du projet.
+      </p>
+    </section>
+    <section id="P2">
+        <h2>Partie 2:Installation des machines virtuelles</h2>
+        <p>
+          2.1 Installation de la VM du routeur avec pfSense
+          <br><br> 
+      La première étape dans la mise en place de notre infrastructure consiste à installer la machine virtuelle du routeur en utilisant pfSense. pfSense est un système d'exploitation basé sur FreeBSD qui fournit des fonctionnalités de pare-feu et de routage pour un réseau. L'installation de pfSense est similaire à celle d'autres distributions Linux. Il suffit de télécharger l'image ISO de pfSense et de suivre le processus d'installation guidé.
+      <br><br>
+      Après avoir installé pfSense, il est nécessaire de configurer les interfaces réseau pour établir la connexion entre les machines virtuelles et le réseau local de l'ordinateur hôte. La VM pfSense doit être configurée avec un pont réseau pour relier le réseau du PC au réseau de la VM.
+      <br><br>
+      2.2 Installation des VMs clients Ubuntu et Windows
+      <br><br>
+      Ensuite, nous installons les deux machines virtuelles clients : une sous Ubuntu et une autre sous Windows. Ces machines virtuelles sont configurées pour se connecter automatiquement au réseau interne créé précédemment. Aucune configuration supplémentaire n'est nécessaire pour établir cette connexion. Une fois les systèmes d'exploitation installés, nous mettons à jour chacun d'eux pour s'assurer que les dernières mises à jour et correctifs de sécurité sont appliqués.
+      <br><br>
+      2.3 Installation des VMs serveur Ubuntu pour le serveur web et le serveur de sauvegarde
+      <br><br>
+      Enfin, nous installons les deux machines virtuelles serveur sous Ubuntu : le serveur web et le serveur de sauvegarde. Ces deux serveurs sont configurés avec les mêmes caractéristiques : Ubuntu Server 22.04, 2 Go de RAM, 1 CPU et 20 Go de stockage. Nous nous appuyons sur l'expérience de notre serveur personnel pour configurer Apache et le système.
+      <br><br>
+      Après l'installation des deux serveurs, nous configurons les interfaces réseau pour établir la connexion au réseau interne VirtualBox. Les deux serveurs doivent être configurés avec des ponts réseau pour avoir accès au même réseau local que l'ordinateur hôte.
+      <br><br>
+      2.4 Mise à jour et maintenance des VMs
+      <br><br>
+      Une fois toutes les machines virtuelles installées, il est essentiel de les maintenir à jour. Chaque système doit être mis à jour dès que l'installation est terminée, et les mises à jour doivent être effectuées régulièrement pour garantir la sécurité et la stabilité de l'infrastructure. Cela implique l'installation des correctifs de sécurité, des mises à jour de logiciels et des nouvelles fonctionnalités pour les systèmes d'exploitation et les applications installées.
+        </p>
+    </section>
+    <section id="P3">
+        <h2>Partie 3: Configuration du réseau</h2>
+        <p>
+          3.1 Configuration de la VM pfSense et du réseau interne VirtualBox
+          <br><br>
+  Après l'installation de la VM pfSense, nous devons la configurer pour qu'elle gère le routage et le pare-feu entre le réseau de l'ordinateur hôte et le réseau interne VirtualBox. Pour ce faire, nous créons un réseau interne VirtualBox dans lequel toutes les VMs seront connectées. La VM pfSense est configurée avec deux interfaces réseau : une connectée au réseau de l'ordinateur hôte via un pont réseau et une autre connectée au réseau interne VirtualBox.
+  <br><br>
+  La configuration de pfSense consiste à attribuer des adresses IP aux interfaces réseau, à configurer le serveur DHCP pour le réseau interne VirtualBox et à définir des règles de pare-feu pour contrôler le trafic entre les réseaux. En configurant pfSense de cette manière, le routeur fait la liaison entre le réseau de l'ordinateur hôte et le réseau interne des VMs, permettant ainsi aux autres VMs d'accéder à Internet tout en restant isolées sur le réseau interne VirtualBox.
+  <br><br>
+  3.2 Configuration des VMs clients et serveurs
+  <br><br>
+  Une fois le réseau interne VirtualBox configuré et opérationnel, nous devons nous assurer que les autres VMs (clients Ubuntu et Windows, serveur web et serveur de sauvegarde) sont correctement connectées à ce réseau. Pour ce faire, nous devons attribuer des adresses IP statiques aux VMs serveurs et configurer les VMs clients pour qu'elles obtiennent automatiquement une adresse IP du serveur DHCP de pfSense.
+  <br><br>
+  Nous devons également configurer les interfaces réseau des serveurs pour qu'elles soient connectées au réseau interne VirtualBox et au réseau de l'ordinateur hôte via des ponts réseau, afin de leur permettre d'accéder au réseau local et d'être accessibles depuis l'extérieur.
+  <br><br>
+  3.3 Configuration des règles de pare-feu et des redirections de ports
+  <br><br>
+  Enfin, il est nécessaire de configurer les règles de pare-feu sur la VM pfSense pour contrôler le trafic entre les réseaux et protéger les VMs des menaces extérieures. Cela implique de définir des règles qui permettent uniquement le trafic nécessaire entre les réseaux et de bloquer tout le reste. Par exemple, nous pouvons autoriser uniquement le trafic HTTP et HTTPS vers le serveur web, tout en bloquant l'accès SSH depuis l'extérieur pour des raisons de sécurité.
+  <br><br>
+  De plus, pour que le serveur web soit accessible depuis l'extérieur, nous devons configurer des redirections de ports sur la VM pfSense. Cela permet de rediriger le trafic entrant sur les ports HTTP et HTTPS vers le serveur web sur le réseau interne VirtualBox. Les règles de redirection de ports doivent être configurées en fonction des services et des applications utilisées sur les serveurs.
+        </p>
+    </section>
+    <section id="P4">
+        <h2>Partie 4: Mise en place du serveur web avec Apache2 </h2>
+        <p>
+          4.1 Transfert des fichiers du site web
+<br><br>
+Après avoir configuré le réseau et installé la VM du serveur web Ubuntu, nous devons transférer les fichiers du site web sur le serveur. Pour ce faire, nous utilisons l'outil SCP (Secure Copy Protocol) qui permet de transférer des fichiers de manière sécurisée via SSH. Depuis l'ordinateur hôte, nous exécutons la commande SCP en spécifiant les fichiers à transférer, l'adresse IP du serveur web et l'emplacement de destination sur le serveur. Voici un exemple de commande pour transférer un dossier nommé "site" :
+<br><br>
+<code>
+ruby
+<br>
+Copy code
+<br>
+scp -r site/ utilisateur@adresse_ip_serveur_web:/var/www/html/
+</code>
+<br><br>
+4.2 Mise à jour du système et installation d'Apache2
+<br><br>
+Une fois les fichiers du site web transférés, nous devons mettre à jour le système du serveur web et installer le serveur HTTP Apache2. Pour ce faire, nous exécutons les commandes suivantes :
+<br><br>
+<code>
+sql
+<br>
+Copy code
+<br>
+sudo apt update
+<br>
+sudo apt upgrade
+<br>
+sudo apt install apache2
+</code>
+<br><br>
+Ces commandes permettent de mettre à jour la liste des paquets disponibles, d'installer les mises à jour du système et d'installer le serveur Apache2.
+<br><br>
+4.3 Configuration d'Apache2 et des Virtual Hosts
+<br><br>
+Après l'installation d'Apache2, nous devons configurer le serveur web pour qu'il serve correctement notre site. Pour cela, nous créons un fichier de configuration spécifique pour notre site, nommé "projet-uf.fr.conf", dans le répertoire "/etc/apache2/sites-available/". Ce fichier contient les directives de configuration pour notre site, telles que l'emplacement des fichiers du site, les options d'accès et les paramètres du journal.
+<br><br>
+Voici un exemple de fichier de configuration pour notre site "projet-uf.fr" :
+<br><br>
+<code>
+bash
+<br>
+Copy code
+<br>
+VirtualHost *:80
+  <br>
+    ServerName projet-uf.fr
+    <br>
+    ServerAlias www.projet-uf.fr
+    <br>
+    DocumentRoot /var/www/html/site
+    <br>
+    ErrorLog ${APACHE_LOG_DIR}/projet-uf.fr-error.log
+    <br>
+    CustomLog ${APACHE_LOG_DIR}/projet-uf.fr-access.log combined
+    <br>
+    Directory /var/www/html/site
+      <br>
+        Options FollowSymLinks
+        <br>
+        AllowOverride All
+        <br>
+        Require all granted
+        <br>
+    Directory
+    <br>
+VirtualHost
+<br><br>
+</code>
+Une fois le fichier de configuration créé, nous devons activer le Virtual Host en exécutant les commandes suivantes :
+<br><br>
+<code>
+Copy code
+<br>
+sudo a2ensite projet-uf.fr.conf
+<br>
+sudo systemctl reload apache2
+</code>
+<br><br>
+4.4 Ouverture des ports et configuration du pare-feu
+<br><br>
+Pour que notre serveur web soit accessible depuis l'extérieur, nous devons ouvrir les ports nécessaires (HTTP et HTTPS) sur notre pare-feu pfSense. Nous configurons également des redirections de ports pour que le trafic entrant sur ces ports soit redirigé vers notre serveur web sur le réseau interne VirtualBox.
+<br><br>
+En outre, il peut être nécessaire d'ajuster les règles du pare-feu sur le serveur web lui-même pour autoriser le trafic entrant sur les ports HTTP et HTTPS. Pour ce faire, nous utilisons la commande "ufw" (Uncomplicated Firewall) :
+<br><br>
+<code>
+Copy code
+<br>
+sudo ufw allow http
+<br>
+sudo ufw allow https
+<br>
+sudo ufw reload
+</code>
+<br><br>
+Avec ces configurations en place, notre serveur web Apache2 est maintenant configuré pour servir notre site "projet-uf.fr" et est accessible depuis l'extérieur.
+<br><br>
+4.5 Maintenance et surveillance du serveur web
+<br><br>
+Pour assurer le bon fonctionnement du serveur web, il est important d'effectuer régulièrement des opérations de maintenance et de surveillance. Cela comprend la vérification des journaux d'erreurs et d'accès, la mise à jour du système et des logiciels, ainsi que la surveillance des performances et de l'utilisation des ressources.
+<br><br>
+Pour consulter les journaux d'accès et d'erreur d'Apache2, vous pouvez utiliser les commandes suivantes :
+<br><br>
+<code>
+bash
+<br>
+Copy code
+<br>
+sudo tail -f /var/log/apache2/projet-uf.fr-error.log
+<br>
+sudo tail -f /var/log/apache2/projet-uf.fr-access.log
+</code>
+<br><br>
+Ces commandes vous permettront de surveiller en temps réel les requêtes entrantes sur votre serveur web et d'identifier rapidement les problèmes éventuels.
+<br><br>
+Il est également recommandé de configurer des outils de surveillance pour les performances du serveur web et l'utilisation des ressources. Ces outils peuvent vous aider à détecter les problèmes et à planifier les mises à niveau du matériel ou les ajustements de configuration si nécessaire.
+<br><br>
+En résumé, la partie 4 a abordé les étapes essentielles pour mettre en place un serveur web fonctionnel et sécurisé en utilisant Apache2 sur une machine virtuelle Ubuntu. Cela comprend le transfert des fichiers du site web, l'installation et la configuration d'Apache2, l'ouverture des ports et la configuration du pare-feu, ainsi que la maintenance et la surveillance du serveur web pour assurer sa disponibilité et ses performances.
+        </p>
+    </section>
+    <section id="Conclu">
+      <h2>Conclusion</h2>
+      <p>
+        Ce projet nous a permis de mettre en place une infrastructure réseau avec un serveur web et un serveur de sauvegarde, tous deux fonctionnant sur des machines virtuelles. Nous avons pu examiner plusieurs solutions et en choisir les meilleures en fonction de nos besoins et de notre expérience. De plus, nous avons réussi à configurer un réseau sécurisé pour les VMs, assurant ainsi la protection de nos données et la disponibilité de nos services.
+<br><br>
+Tout au long du projet, nous avons pu :
+<br><br>
+Analyser les différentes solutions à utiliser, telles que Borg ou rsync, Ubuntu Server ou Debian, et choisir celles qui nous convenaient le mieux.
+<br>
+Installer et configurer les machines virtuelles nécessaires, notamment pour le serveur web, le serveur de sauvegarde et les clients.
+<br>
+Configurer un réseau sécurisé pour les VMs et établir une connexion entre elles, assurant ainsi une communication optimale et sécurisée.
+<br>
+Mettre en place un serveur web performant et sécurisé avec Apache2, accessible depuis l'extérieur.
+<br>
+Configurer un système de sauvegarde efficace avec Borg, automatisant les sauvegardes quotidiennes pour protéger nos données.
+<br>
+Ce projet a également mis en évidence l'importance de la gestion des accès et des identifiants, grâce à l'utilisation d'un gestionnaire de mots de passe comme Bitwarden. Ce système garantit la sécurité et l'accessibilité des informations d'identification pour tous les membres de l'équipe.
+<br><br>
+En somme, ce projet a été une occasion d'acquérir des compétences essentielles en matière de gestion des systèmes et des réseaux, ainsi que d'approfondir notre compréhension des meilleures pratiques en matière de sécurité. Ces compétences seront utiles pour maintenir et améliorer l'infrastructure actuelle, ainsi que pour d'éventuels projets futurs nécessitant des connaissances similaires.
+      </p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2023 - Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
+
