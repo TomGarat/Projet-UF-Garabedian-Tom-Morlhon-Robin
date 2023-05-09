@@ -23,13 +23,13 @@
           </ul>
         </nav>
       </header>
-      
+        
   <main>
     <section id="intro">
       <h2>Introduction</h2>
       <p>Le projet présenté ici vise à mettre en place une infrastructure informatique composée d'un serveur web et d'un serveur de sauvegarde pour une organisation. Ce projet permettra à l'organisation d'héberger et de gérer efficacement son site web tout en s'assurant de la sécurité et de l'intégrité des données grâce à un système de sauvegarde performant.
         <br><br>
-        Ce projet repose sur l'utilisation de plusieurs outils et technologies, tels que Borg pour la sauvegarde des données, Apache2 pour le serveur web, Ubuntu Server pour les systèmes d'exploitation et VirtualBox pour la virtualisation des environnements. Nous avons également pris en compte les aspects de sécurité, comme la gestion des mots de passe avec Bitwarden et la configuration des pare-feu.
+        Ce projet repose sur l'utilisation de plusieurs outils et technologies, tels que Borg pour la sauvegarde des données, Apache2 pour le serveur web, Ubuntu Server pour les systèmes d'exploitation et VirtualBox pour la virtualisation des environnements.
         <br><br>
         Dans le cadre de ce projet, nous avons procédé à l'installation et la configuration de plusieurs machines virtuelles (VM) pour mettre en place l'infrastructure nécessaire. Nous avons également établi des connexions réseau entre les VMs, configuré le serveur web pour accueillir le site et mis en place un système de sauvegarde automatisé avec Borg.
         <br><br>
@@ -113,9 +113,6 @@
 Après avoir configuré le réseau et installé la VM du serveur web Ubuntu, nous devons transférer les fichiers du site web sur le serveur. Pour ce faire, nous utilisons l'outil SCP (Secure Copy Protocol) qui permet de transférer des fichiers de manière sécurisée via SSH. Depuis l'ordinateur hôte, nous exécutons la commande SCP en spécifiant les fichiers à transférer, l'adresse IP du serveur web et l'emplacement de destination sur le serveur. Voici un exemple de commande pour transférer un dossier nommé "site" :
 <br><br>
 <code>
-ruby
-<br>
-Copy code
 <br>
 scp -r site/ utilisateur@adresse_ip_serveur_web:/var/www/html/
 </code>
@@ -125,9 +122,6 @@ scp -r site/ utilisateur@adresse_ip_serveur_web:/var/www/html/
 Une fois les fichiers du site web transférés, nous devons mettre à jour le système du serveur web et installer le serveur HTTP Apache2. Pour ce faire, nous exécutons les commandes suivantes :
 <br><br>
 <code>
-sql
-<br>
-Copy code
 <br>
 sudo apt update
 <br>
@@ -145,9 +139,6 @@ Après l'installation d'Apache2, nous devons configurer le serveur web pour qu'i
 Voici un exemple de fichier de configuration pour notre site "projet-uf.fr" :
 <br><br>
 <code>
-bash
-<br>
-Copy code
 <br>
 VirtualHost *:80
   <br>
@@ -174,55 +165,15 @@ VirtualHost *:80
 VirtualHost
 <br><br>
 </code>
+<br><br>
 Une fois le fichier de configuration créé, nous devons activer le Virtual Host en exécutant les commandes suivantes :
 <br><br>
 <code>
-Copy code
 <br>
-sudo a2ensite projet-uf.fr.conf
+sudo a2ensite projet-uf.fr
 <br>
 sudo systemctl reload apache2
 </code>
-<br><br>
-4.4 Ouverture des ports et configuration du pare-feu
-<br><br>
-Pour que notre serveur web soit accessible depuis l'extérieur, nous devons ouvrir les ports nécessaires (HTTP et HTTPS) sur notre pare-feu pfSense. Nous configurons également des redirections de ports pour que le trafic entrant sur ces ports soit redirigé vers notre serveur web sur le réseau interne VirtualBox.
-<br><br>
-En outre, il peut être nécessaire d'ajuster les règles du pare-feu sur le serveur web lui-même pour autoriser le trafic entrant sur les ports HTTP et HTTPS. Pour ce faire, nous utilisons la commande "ufw" (Uncomplicated Firewall) :
-<br><br>
-<code>
-Copy code
-<br>
-sudo ufw allow http
-<br>
-sudo ufw allow https
-<br>
-sudo ufw reload
-</code>
-<br><br>
-Avec ces configurations en place, notre serveur web Apache2 est maintenant configuré pour servir notre site "projet-uf.fr" et est accessible depuis l'extérieur.
-<br><br>
-4.5 Maintenance et surveillance du serveur web
-<br><br>
-Pour assurer le bon fonctionnement du serveur web, il est important d'effectuer régulièrement des opérations de maintenance et de surveillance. Cela comprend la vérification des journaux d'erreurs et d'accès, la mise à jour du système et des logiciels, ainsi que la surveillance des performances et de l'utilisation des ressources.
-<br><br>
-Pour consulter les journaux d'accès et d'erreur d'Apache2, vous pouvez utiliser les commandes suivantes :
-<br><br>
-<code>
-bash
-<br>
-Copy code
-<br>
-sudo tail -f /var/log/apache2/projet-uf.fr-error.log
-<br>
-sudo tail -f /var/log/apache2/projet-uf.fr-access.log
-</code>
-<br><br>
-Ces commandes vous permettront de surveiller en temps réel les requêtes entrantes sur votre serveur web et d'identifier rapidement les problèmes éventuels.
-<br><br>
-Il est également recommandé de configurer des outils de surveillance pour les performances du serveur web et l'utilisation des ressources. Ces outils peuvent vous aider à détecter les problèmes et à planifier les mises à niveau du matériel ou les ajustements de configuration si nécessaire.
-<br><br>
-En résumé, la partie 4 a abordé les étapes essentielles pour mettre en place un serveur web fonctionnel et sécurisé en utilisant Apache2 sur une machine virtuelle Ubuntu. Cela comprend le transfert des fichiers du site web, l'installation et la configuration d'Apache2, l'ouverture des ports et la configuration du pare-feu, ainsi que la maintenance et la surveillance du serveur web pour assurer sa disponibilité et ses performances.
         </p>
     </section>
     <section id="Conclu">
